@@ -27,10 +27,16 @@ module.exports = {
     splitChunks: {
       chunks: "all",
       cacheGroups: {
-        ["axios"]: {
-          name: "axios",
+        ["a"]: {
+          name: "abc",
           chunks: "all",
           enforce: true,
+          test: (module) => {
+            if (module.userRequest && /a\.js/.test(module.userRequest)) {
+              return true;
+            }
+            return false;
+          },
         },
       },
     },
