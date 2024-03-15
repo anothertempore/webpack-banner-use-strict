@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: [
     new webpack.BannerPlugin({
-      banner: "const a = 1;",
+      banner: "const hello = 'fromBannerPlugin';",
       raw: true,
       include: /\.js$/,
     }),
@@ -27,12 +27,13 @@ module.exports = {
     splitChunks: {
       chunks: "all",
       cacheGroups: {
-        ["a"]: {
-          name: "abc",
+        ["async"]: {
+          name: "async",
           chunks: "all",
           enforce: true,
           test: (module) => {
-            if (module.userRequest && /a\.js/.test(module.userRequest)) {
+            console.log({ u: module.userRequest });
+            if (module.userRequest && module.userRequest.includes("async")) {
               return true;
             }
             return false;

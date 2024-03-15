@@ -1,1 +1,3 @@
-console.log("hello world");
+const a = require("async");
+
+console.log("hello world", a);
